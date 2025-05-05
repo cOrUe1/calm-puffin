@@ -49,7 +49,7 @@ const LandingPageForm: React.FC = () => {
       // NOTA: con mode: 'no-cors', non possiamo leggere la risposta.
       // Assumiamo successo se la richiesta non lancia un errore di rete.
       console.log('Richiesta inviata (no-cors). Assumendo successo.');
-      showSuccess("Grazie! Il tuo contatto è stato inviato con successo.");
+      showSuccess("Grazie! La tua partecipazione è stata registrata con successo"); // Updated message
       setIsSubmitSuccessful(true);
       reset(); // Resetta il form dopo l'invio
 
