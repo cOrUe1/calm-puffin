@@ -84,12 +84,12 @@ const LandingPageForm: React.FC = () => {
           </span>
         </p>
         <p>
-          Stiamo preparando un evento esclusivo nel nostro showroom.<br />
-          Un’esperienza unica tra design, materiali pregiati e nuove ispirazioni per la tua casa.
+          Per celebrare il nostro nuovo inizio con Stosa:<br />
+          ai primi 10 ordini di una cucina da almeno 4.900€ (inclusi top e 4 elettrodomestici Samsung), regaliamo un elettrodomestico Samsung a scelta tra smart TV 55", lavatrice o asciugatrice.
         </p>
         <p>
-          Vuoi essere tra i primi a scoprirlo?<br />
-          Lasciaci il tuo contatto per ricevere un invito personale.
+          E per te che sei stato con noi oggi, il nostro grazie più sincero:<br />
+          compila il form e ricevi uno sconto del 10% su tutti gli acquisti, valido fino al 31 dicembre 2025.
         </p>
 
         <form onSubmit={handleSubmit(onSubmit)} className="landing-form" noValidate>
@@ -160,7 +160,7 @@ const LandingPageForm: React.FC = () => {
         </form>
 
         <div className="footer">
-          * Posti limitati. Evento riservato agli amanti del design e dell’arredamento d’eccellenza.
+          Il nostro evento è solo l'inizio. Se ti va, lasciaci i tuoi contatti: molte sorprese devono ancora arrivare...
         </div>
       </div>
     </div>
