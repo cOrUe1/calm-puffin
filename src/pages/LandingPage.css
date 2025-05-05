@@ -1,0 +1,260 @@
+/* Stili specifici per la Landing Page dell'evento */
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans&family=DM+Sans:wght@600&display=swap');
+
+.landing-body {
+  font-family: 'Open Sans', sans-serif;
+  background: url(https://i.postimg.cc/gjTYvggD/Chat-GPT-Image-12-apr-2025-12-45-44.png) no-repeat center center fixed;
+  background-size: cover;
+  color: #e0e0e0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  padding: 40px 20px; /* Aumentato padding per evitare tagli */
+  box-sizing: border-box; /* Assicura che padding sia incluso */
+  width: 100%; /* Assicura che occupi tutta la larghezza */
+  margin: 0; /* Rimuove margini di default */
+  overflow-x: hidden; /* Previene scroll orizzontale */
+}
+
+.landing-body::before {
+  content: '';
+  position: fixed; /* Usa fixed per coprire l'intera viewport */
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.7); /* Scurisce lo sfondo */
+  z-index: -1; /* Mette il velo dietro il contenuto */
+}
+
+
+@keyframes fadeInBody {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.landing-container {
+  position: relative;
+  width: 100%;
+  max-width: 750px;
+  background: rgba(18, 18, 18, 0.92);
+  border-radius: 20px;
+  padding: 40px 30px; /* Leggermente più padding laterale */
+  box-shadow: 0 0 60px rgba(0, 0, 0, 0.7);
+  text-align: center;
+  border: 1px solid rgba(255, 215, 0, 0.2);
+  transform: perspective(1000px) rotateX(0deg); /* Rimosso rotateX iniziale */
+  animation: slideUp 1.5s ease-out;
+  z-index: 1; /* Assicura che sia sopra il velo ::before */
+  box-sizing: border-box;
+}
+
+@keyframes slideUp {
+  0% {
+    transform: translateY(80px) perspective(1000px) rotateX(5deg);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0) perspective(1000px) rotateX(0deg);
+    opacity: 1;
+  }
+}
+
+.logo-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center; /* Allinea verticalmente i loghi */
+  gap: 30px;
+  margin-bottom: 40px;
+  flex-wrap: wrap;
+  filter: drop-shadow(0 0 15px rgba(212, 175, 55, 0.3));
+}
+
+.logo {
+  max-width: 120px;
+  max-height: 60px;  /* uniforma l'altezza */
+  height: auto;
+  object-fit: contain;  /* mantiene proporzioni eleganti */
+  filter: brightness(0.95);
+  transition: transform 0.3s ease-in-out, filter 0.3s;
+}
+
+.logo:hover {
+  transform: scale(1.05);
+  filter: brightness(1.1) drop-shadow(0 0 15px rgba(212, 175, 55, 0.4));
+}
+
+.landing-container h1 {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 2em;
+  color: #b01016;
+  margin-bottom: 20px;
+  letter-spacing: 1px;
+  text-shadow: 0 0 8px rgba(0, 0, 0, 0.5);
+  position: relative;
+  z-index: 1;
+}
+
+.typing-wrapper {
+  display: inline-block;
+  overflow: hidden;
+  border-right: 2px solid #b01016;
+  white-space: nowrap;
+  max-width: 100%;
+  animation: typing 4s steps(60, end) forwards, blink 0.75s step-end infinite;
+  margin-bottom: 15px; /* Aggiunto spazio sotto */
+  min-height: 1.2em; /* Altezza minima per evitare collasso */
+}
+
+.typing-text {
+  display: inline;
+  font-size: 1.1em;
+  color: #eee;
+}
+
+@keyframes typing {
+  from { width: 0; }
+  to { width: 100%; }
+}
+
+@keyframes blink {
+  50% { border-color: transparent; }
+}
+
+.landing-container p {
+  font-size: 1em;
+  color: #ddd;
+  margin-bottom: 25px;
+  line-height: 1.6;
+}
+
+.landing-form input[type="text"],
+.landing-form input[type="email"],
+.landing-form input[type="tel"] {
+  margin-bottom: 10px;
+  padding: 12px 15px; /* Aumentato padding */
+  width: 100%;
+  border-radius: 5px;
+  border: 1px solid #555; /* Bordo leggero per visibilità */
+  background-color: #333; /* Sfondo input scuro */
+  color: #eee; /* Testo input chiaro */
+  font-size: 1em;
+  box-sizing: border-box; /* Include padding nel width */
+  transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+.landing-form input[type="text"]:focus,
+.landing-form input[type="email"]:focus,
+.landing-form input[type="tel"]:focus {
+  outline: none;
+  border-color: #b01016;
+  box-shadow: 0 0 8px rgba(176, 16, 22, 0.5);
+}
+
+.landing-form small {
+  display: block; /* Cambiato in block per andare a capo */
+  color: #ff6b6b;
+  font-size: 0.85em;
+  margin-top: -5px; /* Avvicina al campo sopra */
+  margin-bottom: 10px;
+  text-align: left; /* Allinea a sinistra */
+  min-height: 1.2em; /* Altezza minima per evitare salti layout */
+}
+
+.landing-form label {
+  display: flex; /* Usa flex per allineare checkbox e testo */
+  align-items: center; /* Allinea verticalmente */
+  font-size: 0.9em;
+  color: #ccc;
+  margin-bottom: 20px; /* Aumentato spazio sotto */
+  text-align: left;
+  cursor: pointer;
+}
+
+.landing-form input[type="checkbox"] {
+  margin-right: 10px; /* Spazio tra checkbox e testo */
+  width: 18px; /* Dimensione checkbox */
+  height: 18px;
+  cursor: pointer;
+  accent-color: #b01016; /* Colora la checkbox */
+}
+
+.landing-form label span {
+  font-size: 0.8em;
+  color: #999;
+  display: block; /* Manda a capo la nota */
+  margin-top: 5px;
+}
+
+.landing-form button[type="submit"] {
+  background-color: #b01016;
+  color: white;
+  padding: 12px 30px; /* Padding leggermente aumentato */
+  border: none;
+  border-radius: 5px;
+  font-size: 1.1em; /* Leggermente più grande */
+  font-weight: 600; /* Più bold */
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.2s;
+  margin-top: 10px; /* Spazio sopra il bottone */
+}
+
+.landing-form button[type="submit"]:hover {
+  background-color: #d32f2f; /* Colore hover più scuro */
+  transform: translateY(-2px); /* Effetto sollevamento leggero */
+}
+
+.landing-form button[type="submit"]:disabled {
+  background-color: #555;
+  cursor: not-allowed;
+  transform: none;
+}
+
+
+.footer {
+  margin-top: 30px;
+  font-size: 0.9em;
+  color: #aaa;
+  font-style: italic;
+}
+
+/* Media query per mobile */
+@media (max-width: 600px) {
+  .landing-body {
+    padding: 20px 15px; /* Riduci padding su mobile */
+  }
+  .landing-container {
+    padding: 30px 20px; /* Riduci padding interno */
+  }
+  .landing-container h1 {
+    font-size: 1.8em;
+  }
+  .typing-wrapper {
+    white-space: normal;
+    overflow: visible;
+    display: block;
+    width: auto;
+    animation: none;
+    border-right: none;
+    text-align: center; /* Centra il testo su mobile */
+  }
+  .typing-text {
+    display: inline; /* Mantiene inline ma va a capo */
+    animation: none;
+    font-size: 1em;
+  }
+  .logo-wrapper {
+    gap: 20px;
+  }
+  .logo {
+    max-width: 100px;
+  }
+  .landing-form label {
+    font-size: 0.85em;
+  }
+  .landing-form button[type="submit"] {
+    font-size: 1em;
+    padding: 10px 25px;
+  }
+}

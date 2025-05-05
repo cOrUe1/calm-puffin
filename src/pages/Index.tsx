@@ -1,14 +1,9 @@
-// Update this page (the content is just a fallback if you fail to update the page)
+import LandingPageForm from '@/components/LandingPageForm';
 
 const Index = () => {
-  return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-100">
-      <div className="text-center">
-        <h1 className="text-4xl font-bold mb-4">Welcome to Your Blank App</h1>
-        <p className="text-xl text-gray-600">Start building your amazing project here!</p>
-      </div>
-    </div>
-  );
+  // Rimuoviamo il contenitore di default e renderizziamo direttamente il componente
+  // che ora gestisce il proprio layout a schermo intero.
+  return <LandingPageForm />;
 };
 
 export default Index;
