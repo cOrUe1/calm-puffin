@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useForm, SubmitHandler } from 'react-hook-form';
 import { showSuccess, showError } from '@/utils/toast'; // Usa le funzioni toast esistenti
 import '@/pages/LandingPage.css'; // Importa il CSS specifico
+import { Link } from 'react-router-dom'; // Import Link for internal navigation
 
 interface IFormInput {
   nome: string;
@@ -146,7 +147,9 @@ const LandingPageForm: React.FC = () => {
               {...register("privacy", { required: "Devi accettare l'informativa sulla privacy." })}
             />
             <div> {/* Contenitore per il testo della label */}
-              Acconsento al trattamento dei miei dati personali per finalità informative e di marketing.
+              <Link to="/privacy-policy" target="_blank" rel="noopener noreferrer" className="underline hover:text-gray-400 transition-colors">
+                Acconsento al trattamento dei miei dati personali
+              </Link> per finalità informative e di marketing.
               <span>(Tranquillo, niente spam: siamo gente d’arredamento, non di fastidio!)</span>
             </div>
           </label>
