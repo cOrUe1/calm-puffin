@@ -16,7 +16,8 @@ const LandingPageForm: React.FC = () => {
   const { register, handleSubmit, formState: { errors, isSubmitting }, reset } = useForm<IFormInput>();
   const [isSubmitSuccessful, setIsSubmitSuccessful] = useState(false);
 
-  const scriptURL = 'https://script.google.com/macros/s/AKfycbz2Y81cTidZEvE4SN5i7XwdTO5XN0rJ7FgdtR9IQvkkk-ReBKNxgg_SKyAM3xOFFreWxg/exec';
+  // Updated Google Apps Script URL
+  const scriptURL = 'https://script.google.com/macros/s/AKfycbz2W-a-YPD5hN7A3OJMdFtZ6buHWpCyXxBkXobVFaJAcd--y96wRZL9Eu4bVijjBaedFg/exec';
 
   const onSubmit: SubmitHandler<IFormInput> = async (data) => {
     setIsSubmitSuccessful(false); // Reset success state on new submission
