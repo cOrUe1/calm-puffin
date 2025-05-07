@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import { useForm, SubmitHandler } from 'react-hook-form';
-import { showError } from '@/utils/toast'; // showSuccess non è più usato qui
-import '@/pages/LandingPage.css'; // Importa il CSS specifico
-import { Link } from 'react-router-dom'; // Import Link for internal navigation
-import { CheckCircle } from 'lucide-react'; // Icona per il messaggio di successo
+import { showError } from '@/utils/toast';
+import '@/pages/LandingPage.css';
+import { Link } from 'react-router-dom';
+import { CheckCircle } from 'lucide-react';
 
 interface IFormInput {
   nome: string;
@@ -14,6 +14,14 @@ interface IFormInput {
   privacy: boolean;
 }
 
+// Definiamo i limiti temporali in UTC
+// Chiusura Venerdì 9 Maggio 2025 ore 20:00 CEST (UTC+2) -> 18:00 UTC
+const REGISTRATION_CLOSE_1_UTC = new Date(Date.UTC(2025, 4, 9, 18, 0, 0)); // Mese 4 è Maggio
+// Riapertura Sabato 10 Maggio 2025 ore 17:00 CEST (UTC+2) -> 15:00 UTC
+const REGISTRATION_REOPEN_UTC = new Date(Date.UTC(2025, 4, 10, 15, 0, 0));
+// Chiusura definitiva Sabato 10 Maggio 2025 ore 20:00 CEST (UTC+2) -> 18:00 UTC
+const REGISTRATION_CLOSE_2_UTC = new Date(Date.UTC(2025, 4, 10, 18, 0, 0));
+
 const LandingPageForm: React.FC = () => {
   const { register, handleSubmit, formState: { errors, isSubmitting }, reset } = useForm<IFormInput>();
   const [isSubmitSuccessful, setIsSubmitSuccessful] = useState(false);
@@ -21,8 +29,31 @@ const LandingPageForm: React.FC = () => {
   const scriptURL = 'https://script.google.com/macros/s/AKfycbz2W-a-YPD5hN7A3OJMdFtZ6buHWpCyXxBkXobVFaJAcd--y96wRZL9Eu4bVijjBaedFg/exec';
 
   const onSubmit: SubmitHandler<IFormInput> = async (data) => {
-    // Non resettare isSubmitSuccessful qui, lo facciamo solo se l'utente vuole inviare di nuovo (non implementato)
-    // o al caricamento iniziale della pagina.
+    const now = new Date();
+    let canSubmit = false;
+    let errorMessage = "Le registrazioni sono momentaneamente chiuse."; // Messaggio di default
+
+    // Verifica se l'ora corrente è prima della prima chiusura
+    if (now <= REGISTRATION_CLOSE_1_UTC) {
+      canSubmit = true;
+    } 
+    // Verifica se l'ora corrente è nella finestra di riapertura
+    else if (now >= REGISTRATION_REOPEN_UTC && now <= REGISTRATION_CLOSE_2_UTC) {
+      canSubmit = true;
+    }
+
+    if (!canSubmit) {
+      // Determina il messaggio di errore specifico
+      if (now > REGISTRATION_CLOSE_1_UTC && now < REGISTRATION_REOPEN_UTC) {
+        errorMessage = "Le registrazioni sono temporaneamente chiuse. Riapriranno Sabato 10 Maggio 2025 dalle 17:00 alle 20:00 (ora italiana).";
+      } else if (now > REGISTRATION_CLOSE_2_UTC) {
+        errorMessage = "Le registrazioni per questo evento sono definitivamente terminate.";
+      }
+      showError(errorMessage);
+      return; // Interrompe l'invio
+    }
+
+    // Se canSubmit è true, procedi con l'invio
     const formData = new FormData();
     (Object.keys(data) as Array<keyof IFormInput>).forEach((key) => {
        if (key === 'privacy') {
@@ -45,8 +76,8 @@ const LandingPageForm: React.FC = () => {
       });
 
       console.log('Richiesta inviata (no-cors). Assumendo successo.');
-      setIsSubmitSuccessful(true); // Mostra il messaggio di successo
-      reset(); // Resetta i campi del form
+      setIsSubmitSuccessful(true);
+      reset();
 
     } catch (error) {
       console.error('Errore durante invio a Google Sheets:', error);
@@ -55,7 +86,7 @@ const LandingPageForm: React.FC = () => {
       } else {
          showError("Si è verificato un errore sconosciuto. Riprova.");
       }
-       setIsSubmitSuccessful(false); // Mantieni il form visibile in caso di errore
+       setIsSubmitSuccessful(false);
     }
   };
 
