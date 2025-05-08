@@ -195,9 +195,6 @@ const LandingPageForm: React.FC = () => {
             <p className="text-gray-300">
               Conserva questa pagina o fai uno screenshot come promemoria per il tuo <strong>sconto del 10%</strong>, valido fino al 31 dicembre 2025.
             </p>
-            <p className="text-sm text-gray-400 mt-4">
-              (Se desideri registrare un'altra persona, puoi ricaricare la pagina)
-            </p>
           </div>
         )}
 
