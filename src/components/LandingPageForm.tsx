@@ -202,7 +202,7 @@ const LandingPageForm: React.FC = () => {
         )}
 
         <div className="footer">
-          Il nostro evento è solo l'inizio. Se ti va, lasciaci i tuoi contatti: <em>molte sorprese devono ancora arrivare...</em>
+          Il nostro evento è solo l'inizio. <em>Molte sorprese devono ancora arrivare...</em>
         </div>
       </div>
     </div>
